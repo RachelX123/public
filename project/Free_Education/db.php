@@ -1,8 +1,8 @@
 <?php
 $servername = "mxiao02.webhosting3.eeecs.qub.ac.uk";
 $username = "mxiao02";
-$password = "lp6vnh7l7Fc45Dxp";
-$db = "mxiao02";
+$password = "";
+$db = "";
 $charset = 'utf8mb4';
 
 $conn = new mysqli($servername, $username, $password, $db);
