@@ -6,7 +6,7 @@ A Database is an organized collection of data store （also called structured da
 >
 > 適用於管理數據的軟件
 >
-> ![1723696878517](image/Introduction/1723696878517.png)![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/9a8887bc-0934-42f8-b48e-6508640b2084/feef31f2-ddf6-4055-87a1-5b414a4c1262/image.png)
+> ![1723696878517](image/Introduction/1723696878517.png)
 >
 > Function：
 >
