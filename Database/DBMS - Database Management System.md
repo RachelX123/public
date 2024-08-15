@@ -88,9 +88,7 @@ DBMS provides an environment to ***store*** and ***retrieve*** the data in conve
 | Complexity 复杂 | It is less complex as compared to DBMS.与 DBMS 相比，它的复杂性较低。 | It has more complexity in handling as compared to the file system.与文件系统相比，它的处理更加复杂。 |
 | Security Constraints 安全限制 | File systems provide less security in comparison to DBMS.与 DBMS 相比，文件系统提供的安全性较低。 | DBMS has more security mechanisms as compared to file systems.与文件系统相比，DBMS 具有更多的安全机制。 |
 | Cost 成本 | It is less expensive than DBMS.它比 DBMS 便宜。 | It has a comparatively higher cost than a file system.它的成本比文件系统要高。 |
-| Data Independence 数据独立性 | There is no data independence.不存在数据独立性。 | In DBMS data independence exists, mainly of two types:DBMS中存在数据独立性，主要有两种类型：
-1) Logical Data Independence.逻辑数据独立性。
-2)Physical Data Independence.物理数据独立性。 |
+| Data Independence 数据独立性 | There is no data independence.不存在数据独立性。 | In DBMS data independence exists, mainly of two types:DBMS中存在数据独立性，主要有两种类型：1) Logical Data Independence.逻辑数据独立性。2)Physical Data Independence.物理数据独立性。 |
 | User Access 用户访问 | Only one user can access data at a time.一次只有一个用户可以访问数据。 | Multiple users can access data at a time.多个用户可以同时访问数据。 |
 | Meaning 意义 | The users are not required to write procedures.用户无需编写程序。 | The user has to write procedures for managing databases用户必须编写管理数据库的程序 |
 | Sharing  分享 | Data is distributed in many files. So, it is not easy to share data.数据分布在许多文件中。因此，共享数据并不容易。 | Due to centralized nature data sharing is easy由于集中式的性质，数据共享很容易 |
