@@ -8,7 +8,7 @@ DBMS provides an environment to ***store*** and ***retrieve*** the data in conve
 
 ## Principle
 
-![1723696691460](image/DBMS-DatabaseManagementSystem/1723696691460.png)
+![1723698368524](image/DBMS-DatabaseManagementSystem/1723698368524.png)
 
 ### **Architecture 架構**
 
@@ -18,7 +18,7 @@ DBMS provides an environment to ***store*** and ***retrieve*** the data in conve
 
   client, server, and Database are all present on the same machine
 
-  ![1723696703037](image/DBMS-DatabaseManagementSystem/1723696703037.png)
+  ![1723698375299](image/DBMS-DatabaseManagementSystem/1723698375299.png)
 
   Adv：
 
@@ -31,7 +31,7 @@ DBMS provides an environment to ***store*** and ***retrieve*** the data in conve
 
   *APIs like ODBC and JDBC are used for this interaction.*
 
-  ![1723696709468](image/DBMS-DatabaseManagementSystem/1723696709468.png)
+  ![1723698380669](image/DBMS-DatabaseManagementSystem/1723698380669.png)
 
   Adv: 相對於 3-Tier Architecture
 
@@ -50,13 +50,13 @@ DBMS provides an environment to ***store*** and ***retrieve*** the data in conve
 
   通常用於大型web應用程序
 
-  ![1723696724596](image/DBMS-DatabaseManagementSystem/1723696724596.png)
+  ![1723698388400](image/DBMS-DatabaseManagementSystem/1723698388400.png)
 
   - First - Tier : Client-tier
   - Second - Tier: Application server -tier/middle-tier
   - Third -  Tier: Database-server-tier
 
-  ![1723696731251](image/DBMS-DatabaseManagementSystem/1723696731251.png)
+  ![1723698392856](image/DBMS-DatabaseManagementSystem/1723698392856.png)
 
   Adv：
 
@@ -74,23 +74,23 @@ DBMS provides an environment to ***store*** and ***retrieve*** the data in conve
 
 ### **Difference between File System and DBMS**
 
-| Basics 基础知识                                 | File System 文件系统                                                                                                                      | DBMS                                                                                                                                      |
-| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| Structure 结构                                  | The file system is a way of arranging the files in a storage medium within a computer.文件系统是在计算机内的存储介质中排列文件的一种方式。 | DBMS is software for managing the database.DBMS是管理数据库的软件。                                                                       |
-| Data Redundancy 数据冗余                        | Redundant data can be present in a file system.文件系统中可以存在冗余数据。                                                                | In DBMS there is no redundant data.DBMS 中没有冗余数据。                                                                                  |
-| Backup and Recovery 备份与恢复                  | It doesn’t provide Inbuilt mechanism for backup and recovery of data if it is lost.它不提供内置的数据备份和恢复机制（如果数据丢失）。     | It provides in house tools for backup and recovery of data even if it is lost.它提供内部工具来备份和恢复数据，即使数据丢失也是如此。      |
-| Query processing 查询处理                       | There is no efficient query processing in the file system.文件系统中没有有效的查询处理。                                                   | Efficient query processing is there in DBMS.DBMS 中有高效的查询处理。                                                                     |
-| Consistency 一致性                              | There is less data consistency in the file system.文件系统中的数据一致性较差。                                                             | There is more data consistency because of the process of normalization.由于规范化过程，数据的一致性更高。                                 |
-| Complexity 复杂                                 | It is less complex as compared to DBMS.与 DBMS 相比，它的复杂性较低。                                                                      | It has more complexity in handling as compared to the file system.与文件系统相比，它的处理更加复杂。                                      |
-| Security Constraints 安全限制                   | File systems provide less security in comparison to DBMS.与 DBMS 相比，文件系统提供的安全性较低。                                          | DBMS has more security mechanisms as compared to file systems.与文件系统相比，DBMS 具有更多的安全机制。                                   |
-| Cost 成本                                       | It is less expensive than DBMS.它比 DBMS 便宜。                                                                                            | It has a comparatively higher cost than a file system.它的成本比文件系统要高。                                                            |
-| Data Independence 数据独立性                    | There is no data independence.不存在数据独立性。                                                                                           | In DBMS data independence exists, mainly of two types:DBMS中存在数据独立性，主要有两种类型：Logical Data Independence.逻辑数据独立性。 2）Physical Data Independence. 物理数据独立性。 |                                                                                                                                            | User Access 用户访问                                                                                                                     |
-| Meaning 意义                                    | The users are not required to write procedures.用户无需编写程序。                                                                          | The user has to write procedures for managing databases用户必须编写管理数据库的程序                                                       |
-| Sharing  分享                                  | Data is distributed in many files. So, it is not easy to share data.数据分布在许多文件中。因此，共享数据并不容易。                         | Due to centralized nature data sharing is easy由于集中式的性质，数据共享很容易                                                            |
-| Data Abstraction 数据抽象                       | It give details of storage and representation of data它给出了数据存储和表示的详细信息                                                      | It hides the internal details of Database它隐藏了数据库的内部细节                                                                         |
-| Integrity Constraints 完整性约束                | Integrity Constraints are difficult to implement完整性约束难以实施                                                                         | Integrity constraints are easy to implement完整性约束易于实现                                                                             |
-| Attributes属性                                   | To access data in a file , user requires attributes such as file name, file location.要访问文件中的数据，用户需要文件名、文件位置等属性。  | No such attributes are required.不需要这样的属性。                                                                                        |
-| Example 例子                                    | Cobol, C++                                                                                                                                 | Oracle, SQL Server                                                                                                                        |
+| Basics 基础知识                  | File System 文件系统                                                                                                                      | DBMS                                                                                                                                                                                   |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Structure 结构                   | The file system is a way of arranging the files in a storage medium within a computer.文件系统是在计算机内的存储介质中排列文件的一种方式。 | DBMS is software for managing the database.DBMS是管理数据库的软件。                                                                                                                    |
+| Data Redundancy 数据冗余         | Redundant data can be present in a file system.文件系统中可以存在冗余数据。                                                                | In DBMS there is no redundant data.DBMS 中没有冗余数据。                                                                                                                               |
+| Backup and Recovery 备份与恢复   | It doesn’t provide Inbuilt mechanism for backup and recovery of data if it is lost.它不提供内置的数据备份和恢复机制（如果数据丢失）。     | It provides in house tools for backup and recovery of data even if it is lost.它提供内部工具来备份和恢复数据，即使数据丢失也是如此。                                                   |
+| Query processing 查询处理        | There is no efficient query processing in the file system.文件系统中没有有效的查询处理。                                                   | Efficient query processing is there in DBMS.DBMS 中有高效的查询处理。                                                                                                                  |
+| Consistency 一致性               | There is less data consistency in the file system.文件系统中的数据一致性较差。                                                             | There is more data consistency because of the process of normalization.由于规范化过程，数据的一致性更高。                                                                              |
+| Complexity 复杂                  | It is less complex as compared to DBMS.与 DBMS 相比，它的复杂性较低。                                                                      | It has more complexity in handling as compared to the file system.与文件系统相比，它的处理更加复杂。                                                                                   |
+| Security Constraints 安全限制    | File systems provide less security in comparison to DBMS.与 DBMS 相比，文件系统提供的安全性较低。                                          | DBMS has more security mechanisms as compared to file systems.与文件系统相比，DBMS 具有更多的安全机制。                                                                                |
+| Cost 成本                        | It is less expensive than DBMS.它比 DBMS 便宜。                                                                                            | It has a comparatively higher cost than a file system.它的成本比文件系统要高。                                                                                                         |
+| Data Independence 数据独立性     | There is no data independence.不存在数据独立性。                                                                                           | In DBMS data independence exists, mainly of two types:DBMS中存在数据独立性，主要有两种类型：Logical Data Independence.逻辑数据独立性。 2）Physical Data Independence. 物理数据独立性。 |
+| Meaning 意义                     | The users are not required to write procedures.用户无需编写程序。                                                                          | The user has to write procedures for managing databases用户必须编写管理数据库的程序                                                                                                    |
+| Sharing  分享                   | Data is distributed in many files. So, it is not easy to share data.数据分布在许多文件中。因此，共享数据并不容易。                         | Due to centralized nature data sharing is easy由于集中式的性质，数据共享很容易                                                                                                         |
+| Data Abstraction 数据抽象        | It give details of storage and representation of data它给出了数据存储和表示的详细信息                                                      | It hides the internal details of Database它隐藏了数据库的内部细节                                                                                                                      |
+| Integrity Constraints 完整性约束 | Integrity Constraints are difficult to implement完整性约束难以实施                                                                         | Integrity constraints are easy to implement完整性约束易于实现                                                                                                                          |
+| Attributes属性                    | To access data in a file , user requires attributes such as file name, file location.要访问文件中的数据，用户需要文件名、文件位置等属性。  | No such attributes are required.不需要这样的属性。                                                                                                                                     |
+| Example 例子                     | Cobol, C++                                                                                                                                 | Oracle, SQL Server                                                                                                                                                                     |
 
 ## Key Features:
 
