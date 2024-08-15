@@ -6,7 +6,7 @@ A Database is an organized collection of data store （also called structured da
 >
 > 適用於管理數據的軟件
 >
-> ![1723637506623](image/Introduction介绍dfd7310944464611945858473937828a/1723637506623.png)
+> ![1723696878517](image/Introduction/1723696878517.png)![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/9a8887bc-0934-42f8-b48e-6508640b2084/feef31f2-ddf6-4055-87a1-5b414a4c1262/image.png)
 >
 > Function：
 >
@@ -36,7 +36,7 @@ Differences in Storage Methods 存儲方式的差異
 
 ### 關係數據庫(Relational Database)：
 
-![1723637532922](image/Introduction介绍dfd7310944464611945858473937828a/1723637532922.png)
+![1723696899908](image/Introduction/1723696899908.png)
 
 A relational database is made up of a set of tables（rows and columns） with data that fits into a *predefined category*.指定了所有數據輸入必須使用的格式化方式(表格形式)
 
@@ -74,7 +74,7 @@ A cloud database is a database that typically runs on a cloud computing platform
 
 數據表示為對象
 
-![1723637543360](image/Introduction介绍dfd7310944464611945858473937828a/1723637543360.png)
+![1723696927628](image/Introduction/1723696927628.png)
 
 - Berkeley DB software library(使用相同的概念來快速高效地響應來自嵌入式數據庫的數據庫查詢)
 
@@ -92,7 +92,7 @@ A cloud database is a database that typically runs on a cloud computing platform
 
 [**NoSQL**](https://www.geeksforgeeks.org/introduction-to-nosql/) provide flexible schema designs and often offer [**horizontal scalability**](https://www.geeksforgeeks.org/horizontal-and-vertical-scaling-in-databases/).
 
-![1723637551284](image/Introduction介绍dfd7310944464611945858473937828a/1723637551284.png)
+![1723696938200](image/Introduction/1723696938200.png)
 
 - **文档数据库(Document databases):** Store data in flexible, JSON-like documents.将数据存储在灵活的类似 JSON 的文档中。
   - [**MongoDB**](https://www.geeksforgeeks.org/mongodb-tutorial/)
@@ -109,7 +109,7 @@ A cloud database is a database that typically runs on a cloud computing platform
 
 ### OLTP 數據庫：
 
-An [**OLTP database](https://www.geeksforgeeks.org/on-line-transaction-processing-oltp-system-in-dbms/)** is a quick, analytical database made to handle lots of transactions from several users at once.
+An [OLTP database](https://www.geeksforgeeks.org/on-line-transaction-processing-oltp-system-in-dbms/) is a quick, analytical database made to handle lots of transactions from several users at once.
 
 ### 内存数据库**In-Memory Databases：**
 
@@ -122,7 +122,7 @@ An [**OLTP database](https://www.geeksforgeeks.org/on-line-transaction-processin
 
 Hierarchical databases organize data in a **tree-like structure** where each record has one parent record and multiple child records, forming a hierarchy. Records are linked together in **parent-child relationships**, with each child record having only one parent.  遵循等級或級別分類的數據
 
-![1723637560298](image/Introduction介绍dfd7310944464611945858473937828a/1723637560298.png)
+![1723696971350](image/Introduction/1723696971350.png)
 
 - **IMS (Information Management System)**
 
