@@ -66,3 +66,8 @@
 | Flexibility 灵活性 | Less flexible with rigid schema definitions僵化的模式定义不太灵活 | Highly flexible due to schema-less or dynamic schema由于无模式或动态模式而高度灵活 |
 | Performance 表现 | Excellent for complex queries and joins非常适合复杂的查询和连接 | Optimal for hierarchical data storage and retrieval最适合分层数据存储和检索 |
 | Examples 示例 | MySQL, PostgreSQL, SQL ServerMySQL、PostgreSQL、SQL Server | MongoDB, Cassandra, Redis, DynamoDBMongoDB、卡桑德拉、Redis、DynamoDB |
+
+## Reference
+[GeeksforGeeks](https://www.geeksforgeeks.org/non-relational-databases-and-their-types/?ref=roadmap)
+[IBM NoSQL](https://www.ibm.com/topics/nosql-databases)
+[https://www.youtube.com/watch?v=Q5aTUc7c4jg](https://www.youtube.com/watch?v=Q5aTUc7c4jg)
