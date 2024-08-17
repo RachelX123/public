@@ -23,11 +23,11 @@ It also aids in the reduction of data redundancy and the preservation of databas
 
 | DBMS | RDBMS |
 | --- | --- |
-| https://www.geeksforgeeks.org/introduction-of-dbms-database-management-system-set-1/ stores data as file.https://www.geeksforgeeks.org/introduction-of-dbms-database-management-system-set-1/将数据存储为文件。 | https://www.geeksforgeeks.org/rdbms-architecture/ stores data in tabular form.https://www.geeksforgeeks.org/rdbms-architecture/以表格形式存储数据。 |
+| DBMS stores data as file.DBMS将数据存储为文件。 | RDBMS stores data in tabular form.RDBMS以表格形式存储数据。 |
 | Data elements need to access individually.数据元素需要单独访问。 | Multiple data elements can be accessed at the same time.可以同时访问多个数据元素。 |
 | No relationship between data.数据之间没有关系。 | Data is stored in the form of tables which are related to each other.数据以相互关联的表的形式存储。 |
 | Normalization is not present.标准化不存在。 | Normalization is present.存在标准化。 |
-| DBMS does not support distributed database.DBMS不支持分布式数据库。 | RDBMS supports distributed database.RDBMS 支持分布式数据库。 |
+| DBMS does not support distributed database.DBMS不支持分布式数据库。 | RDBMS supports distributed database. 支持分布式数据库。 |
 | It stores data in either a navigational or hierarchical form.它以导航或分层形式存储数据。 | It uses a tabular structure where the headers are the column names, and the rows contain corresponding values.它使用表格结构，其中标题是列名称，行包含相应的值。 |
 | It deals with small quantity of data.它处理少量数据。 | It deals with large amount of data.它处理大量数据。 |
 | Data redundancy is common in this model.数据冗余在此模型中很常见。 | Keys and indexes do not allow Data redundancy.键和索引不允许数据冗余。 |
@@ -38,7 +38,7 @@ It also aids in the reduction of data redundancy and the preservation of databas
 | Data fetching is slower for the large amount of data.对于大量数据，数据获取速度较慢。 | Data fetching is fast because of relational approach.由于关系方法，数据获取速度很快。 |
 | The data in a DBMS is subject to low security levels with regards to data manipulation.DBMS 中的数据在数据操作方面受到较低的安全级别的影响。 | There exists multiple levels of data security in a RDBMS.RDBMS 中存在多个级别的数据安全性。 |
 | Low software and hardware necessities.软件和硬件要求低。 | Higher software and hardware necessities.对软硬件要求较高。 |
-| Examples:https://www.geeksforgeeks.org/xml-basics/, Window Registry, Forxpro, dbaseIIIplus etc.示例： https://www.geeksforgeeks.org/xml-basics/ 、Window 注册表、Forxpro、dbaseIIIplus 等。 | Examples: https://www.geeksforgeeks.org/architecture-of-mysql/, https://www.geeksforgeeks.org/what-is-postgresql-introduction/, https://www.geeksforgeeks.org/what-is-sql/ Server, Oracle, Microsoft Access etc.示例： https://www.geeksforgeeks.org/architecture-of-mysql/ 、 https://www.geeksforgeeks.org/what-is-postgresql-introduction/ 、 https://www.geeksforgeeks.org/what-is-sql/ Server、Oracle、Microsoft Access 等。 |
+| Examples: XML, Window Registry, Forxpro, dbaseIIIplus etc.示例： XML 、Window 注册表、Forxpro、dbaseIIIplus 等。 | Examples: MySQL, PostgreSQL, SQL Server, Oracle, Microsoft Access etc.示例： MySQL 、 PostgreSQL 、 SQL Server、Oracle、Microsoft Access 等。 |
 
 ## **Architecture 架构**
 
