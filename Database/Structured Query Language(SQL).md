@@ -242,7 +242,7 @@ perform bitwise operations on binary values in SQL queries, manipulating individ
 | some      | SOME operator evaluates the condition between the outer and inner tables and evaluates to true if the final result returns any one row. If not, then it evaluates to false.SOME 运算符评估外表和内表之间的条件，如果最终结果返回任意一行，则评估结果为 true。如果不是，则评估结果为 false。                                                                                                       |
 | UNIQUE    | The UNIQUE operator searches every unique row of a specified table.UNIQUE 运算符搜索指定表的每个唯一行。                                                                                                                                                                                                                                                                                          |
 
-## [**Query**](https://www.notion.so/SQL-Query-a0d3b6c60b2d423e84c03c7833c34b56?pvs=21)
+## [**Query**]()
 
 SELECT 語句
 
