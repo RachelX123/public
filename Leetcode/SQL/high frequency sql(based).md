@@ -1,6 +1,5 @@
 # high frequency SQL 50 (basic version) 高頻sql題目(Leetcode)
 
-
 ### 查詢
 
 #### 1757. [可回收且低脂的产品](https://leetcode.cn/problems/recyclable-and-low-fat-products/)
@@ -1671,7 +1670,6 @@ Transactions table:
 +----------+---------+-------------+----------------+--------------------+-----------------------+
 ```
 
-
 ##### Answer
 
 ```
@@ -1687,16 +1685,13 @@ FROM
 GROUP BY `month`,`country`
 ```
 
-
 ###### Explain
 
-使用 `Date_FORMAT` 進行`DATE`的格式轉換 
+使用 `Date_FORMAT` 進行 `DATE`的格式轉換
 
-`DATE_FORMAT(    , '%Y-%m')`  將空格處的內容更改格式成YYY-mm 
-
+`DATE_FORMAT(    , '%Y-%m')`  將空格處的內容更改格式成YYY-mm
 
 ###### 日期格式匯總：
-
 
 | DATE_FORMAT字串        | 格式化日期                      |
 | ---------------------- | ------------------------------- |
@@ -1726,9 +1721,7 @@ GROUP BY `month`,`country`
 | `%M %e, %Y`          | 4-Jul-13                        |
 | `%a, %d %b %Y %T`    | Thu, 04 Jul 2013 11:20:05       |
 
-
 ###### 符號匯總：
-
 
 | **限定符** | **含義**                                                                                    |
 | ---------------- | ------------------------------------------------------------------------------------------------- |
@@ -1764,7 +1757,6 @@ GROUP BY `month`,`country`
 | `%Y`           | 表示年份，四位數，例如2000,2001,... 等。                                                          |
 | `%y`           | 表示年份，兩位數，例如00,01,... 等。                                                              |
 | `%%`           | 將百分比（）字元添加到輸出 `%`                                                                  |
-
 
 #### 1174.  [即时食物配送 II](https://leetcode.cn/problems/immediate-food-delivery-ii/)
 
@@ -1863,7 +1855,6 @@ WHERE
 
 ```
 
-
 ###### Optimised
 
 用in代替LEFT JOIN
@@ -1884,7 +1875,6 @@ WHERE (order_date, customer_id) in
     )
 ```
 
-
 運用窗口函數 排序來獲得首單的item
 
 ```
@@ -1901,9 +1891,7 @@ from Delivery) t1
 where r1=1
 ```
 
-
 #### 550. [游戏玩法分析 IV](https://leetcode.cn/problems/game-play-analysis-iv/)
-
 
 ##### Question
 
@@ -1949,19 +1937,15 @@ Activity table:
 <strong>解释：</strong>
 只有 ID 为 1 的玩家在第一天登录后才重新登录，所以答案是 1/3 = 0.33</pre>
 
-
 ##### Answer
 
 這個是直接找到所有的連續登陸的日期的然後限定登陸日期為用戶的註冊日期來查詢的
 
-```/* 向上移動一位為下一次的登陸時間  下一次登陸時間-前一次登錄時間 = 1為連續登陸 */ SELECT     ROUND(SUM(if(d.`differ`=1,1,0))/SUM(1),2) as 'fraction' FROM(     SELECT          player_id,         IFNULL(datediff(t.next_date,t.event_date),0) as 'differ'# 這個等於1的時候說明是連續登陸     FROM     (         SELECT         player_id,         event_date,         IFNULL(LEAD(event_date,1) OVER(Partition BY player_id ORDER BY event_date),0) as 'next_date'     FROM         Activity     ) t     WHERE          (event_date, player_id) IN (SELECT         MIN(event_date),         player_id     FROM         Activity     GROUP BY          player_id)) d
-/* 向上移動一位為下一次的登陸時間 
-下一次登陸時間-前一次登錄時間 = 1為連續登陸
-*/
-SELECT
-    ROUND(SUM(if(d.`differ`=1,1,0))/SUM(1),2) as 'fraction'
+```
+/* 向上移動一位為下一次的登陸時間  下一次登陸時間-前一次登錄時間 = 1為連續登陸 */ SELECT     ROUND(SUM(if(d. `differ `=1,1,0))/SUM(1),2) as 'fraction' FROM(     SELECT          player_id,         IFNULL(datediff(t.next_date,t.event_date),0) as 'differ'# 這個等於1的時候說明是連續登陸     FROM     (         SELECT         player_id,         event_date,         IFNULL(LEAD(event_date,1) OVER(Partition BY player_id ORDER BY event_date),0) as 'next_date'     FROM         Activity     ) t     WHERE          (event_date, player_id) IN (SELECT         MIN(event_date),         player_id     FROM         Activity     GROUP BY          player_id)) d /* 向上移動一位為下一次的登陸時間 下一次登陸時間-前一次登錄時間 = 1為連續登陸
+ */ SELECT     ROUND(SUM(if(d.`differ`=1,1,0))/SUM(1),2) as 'fraction'
 FROM(
-    SELECT 
+    SELECT
         player_id,
         IFNULL(datediff(t.next_date,t.event_date),0) as 'differ'# 這個等於1的時候說明是連續登陸
     FROM
@@ -1973,16 +1957,15 @@ FROM(
     FROM
         Activity
     ) t
-    WHERE 
+    WHERE
         (event_date, player_id) IN (SELECT
         MIN(event_date),
         player_id
     FROM
         Activity
-    GROUP BY 
+    GROUP BY
         player_id)) d
 ```
-
 
 將前後兩次的登陸時間放在同一條記錄中
 
@@ -1995,9 +1978,8 @@ FROM
     Activity
 ```
 
-
-```
 output:
+
 | player_id | event_date | next_date  |
 | --------- | ---------- | ---------- |
 | 1         | 2016-03-01 | 2016-03-02 |
@@ -2005,12 +1987,11 @@ output:
 | 2         | 2017-06-25 | "0"        |
 | 3         | 2016-03-02 | 2018-07-03 |
 | 3         | 2018-07-03 | "0"        |
-```
 
 計算兩個日期之間的差
 
 ```
- SELECT 
+SELECT
     player_id,
     t.event_date,
     next_date,
@@ -2026,9 +2007,8 @@ FROM
     ) t
 ```
 
-
-```
 output:
+
 | player_id | event_date | next_date  | differ |
 | --------- | ---------- | ---------- | ------ |
 | 1         | 2016-03-01 | 2016-03-02 | 1      |
@@ -2036,42 +2016,35 @@ output:
 | 2         | 2017-06-25 | "0"        | 0      |
 | 3         | 2016-03-02 | 2018-07-03 | 853    |
 | 3         | 2018-07-03 | "0"        | 0      |
-```
 
 這個時候差距為1的為連續登陸一天的， 而1到0結束是連續登陸結束的日期
-
-
 
 ###### 更快速的方法
 
 表格自連，並且是註冊日期的基礎上，找到表格中用戶在註冊日期第二天的登錄記錄添加的表格中， 計算存在第二天日期的則為重複兩天登錄的用戶
 
 ```
-select 
+select
 round(count(distinct a.player_id)/count(distinct t.player_id),2) as fraction
 from(
-select 
+select
 player_id,
 min(event_date) as first_date
 from Activity
 group by player_id
-) as t left join Activity a 
+) as t left join Activity a
 on t.player_id=a.player_id
 and datediff(a.event_date,first_date)=1
 ```
 
-
 ### 排序和分組
 
-
 #### 2356. [每位教师所教授的科目种类的数量](https://leetcode.cn/problems/number-of-unique-subjects-taught-by-each-teacher/)
-
 
 ##### Question
 
 表: `Teacher`
 
-```
 +-------------+------+
 | Column Name | Type |
 +-------------+------+
@@ -2081,6 +2054,7 @@ and datediff(a.event_date,first_date)=1
 +-------------+------+
 在 SQL 中，(subject_id, dept_id) 是该表的主键。
 该表中的每一行都表示带有 teacher_id 的教师在系 dept_id 中教授科目 subject_id。
+
 ```
 
 查询每位老师在大学里教授的科目种类的数量。
@@ -2120,6 +2094,7 @@ Teacher 表:
   - 他在 1 系教科目 2。
   - 他在 1 系教科目 3。
   - 他在 1 系教科目 4。</pre>
+```
 
 ##### Answer
 
@@ -2132,13 +2107,10 @@ FROM
 GROUP BY teacher_id
 ```
 
-
 #### 1141. [查询近30天活跃用户数](https://leetcode.cn/problems/user-activity-for-the-past-30-days-i/)
-
 
 ##### Question
 
-```
 表：Activity
 
 +---------------+---------+
@@ -2153,15 +2125,12 @@ GROUP BY teacher_id
 activity_type 列是 ENUM(category) 类型， 从 ('open_session'， 'end_session'， 'scroll_down'， 'send_message') 取值。
 该表记录社交媒体网站的用户活动。
 注意，每个会话只属于一个用户。
- 
 
 编写解决方案，统计截至 2019-07-27（包含2019-07-27），近 30 天的每日活跃用户数（当天只要有一条活动记录，即为活跃用户）。
 
 以 任意顺序 返回结果表。
 
 结果示例如下。
-
- 
 
 示例 1:
 
@@ -2183,15 +2152,13 @@ Activity table:
 | 4       | 3          | 2019-06-25    | end_session   |
 +---------+------------+---------------+---------------+
 输出：
-+------------+--------------+ 
++------------+--------------+
 | day        | active_users |
-+------------+--------------+ 
++------------+--------------+
 | 2019-07-20 | 2            |
 | 2019-07-21 | 2            |
-+------------+--------------+ 
++------------+--------------+
 解释：注意非活跃用户的记录不需要展示。
-```
-
 
 ##### Answer
 
@@ -2207,16 +2174,12 @@ GROUP BY `activity_date`
 ORDER BY `day`
 ```
 
-
-
-
 #### 1084. [销售分析III](https://leetcode.cn/problems/sales-analysis-iii/)
 
 ##### Question
 
 表： `Product`
 
-```
 +--------------+---------+
 | Column Name  | Type    |
 +--------------+---------+
@@ -2226,11 +2189,13 @@ ORDER BY `day`
 +--------------+---------+
 product_id 是该表的主键（具有唯一值的列）。
 该表的每一行显示每个产品的名称和价格。
+
 ```
 
 表：`Sales`
 
 ```
+
 +-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
@@ -2244,6 +2209,7 @@ product_id 是该表的主键（具有唯一值的列）。
 这个表可能有重复的行。
 product_id 是 Product 表的外键（reference 列）。
 该表的每一行包含关于一个销售的一些信息。
+
 ```
 
   编写解决方案，报告 `2019年春季` 才售出的产品。即 **仅 **在 `<strong>2019-01-01</strong>` （含）至 `<strong>2019-03-31</strong>` （含）之间出售的商品。
@@ -2283,7 +2249,7 @@ id 为 1 的产品仅在 2019 年春季销售。
 id 为 2 的产品在 2019 年春季销售，但也在 2019 年春季之后销售。
 id 为 3 的产品在 2019 年春季之后销售。
 我们只返回 id 为 1 的产品，因为它是 2019 年春季才销售的产品。</pre>
-
+```
 
 ##### Answer
 
@@ -2307,34 +2273,28 @@ WHERE
         )
 ```
 
-
 ###### Another Method
 
-```
-select 
+select
     product_id,
-    product_name 
-from 
-    Product 
-where 
+    product_name
+from
+    Product
+where
     product_id in (
-        select 
-            product_id 
-        from 
-            Sales 
-        group by product_id 
+        select
+            product_id
+        from
+            Sales
+        group by product_id
         having min(sale_date)>='2019-01-01' and max(sale_date)<='2019-03-31');
-```
-
 
 #### 156. [Classes More Than 5 Students](https://leetcode.cn/problems/classes-more-than-5-students/)
-
 
 ##### Question
 
 表: `Courses`
 
-```
 +-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
@@ -2343,6 +2303,7 @@ where
 +-------------+---------+
 (student, class)是该表的主键（不同值的列的组合）。
 该表的每一行表示学生的名字和他们注册的班级。
+
 ```
 
 查询 **至少有 5 个学生** 的所有班级。
@@ -2381,6 +2342,7 @@ Courses table:
 -计算机课有 1 个学生，所以我们不包括它。</pre>
 
 
+```
 
 ##### Answer
 
@@ -2390,9 +2352,8 @@ SELECT
 FROM
     Courses
 GROUP BY class
-HAVING COUNT(class) >=5 
+HAVING COUNT(class) >=5
 ```
-
 
 #### 1729. [求关注者的数量](https://leetcode.cn/problems/find-followers-count/)
 
@@ -2400,7 +2361,6 @@ HAVING COUNT(class) >=5
 
 表： `Followers`
 
-```
 +-------------+------+
 | Column Name | Type |
 +-------------+------+
@@ -2409,6 +2369,7 @@ HAVING COUNT(class) >=5
 +-------------+------+
 (user_id, follower_id) 是这个表的主键（具有唯一值的列的组合）。
 该表包含一个关注关系中关注者和用户的编号，其中关注者关注用户。
+
 ```
 
 编写解决方案，对于每一个用户，返回该用户的关注者数量。
@@ -2441,7 +2402,7 @@ Followers 表：
 0 的关注者有 {1}
 1 的关注者有 {0}
 2 的关注者有 {0,1}</pre>
-
+```
 
 ##### Answer
 
@@ -2452,10 +2413,14 @@ SELECT
 FROM
     Followers
 GROUP BY user_id
-ORDER BY 
+ORDER BY
     user_id
+
 ```
 
+```
+
+```
 
 #### 619.  [只出现一次的最大数字](https://leetcode.cn/problems/biggest-single-number/)
 
@@ -2463,7 +2428,6 @@ ORDER BY
 
 `MyNumbers` 表：
 
-```
 +-------------+------+
 | Column Name | Type |
 +-------------+------+
@@ -2471,6 +2435,7 @@ ORDER BY
 +-------------+------+
 该表可能包含重复项（换句话说，在SQL中，该表没有主键）。
 这张表的每一行都含有一个整数。
+
 ```
 
 **单一数字** 是在 `MyNumbers` 表中只出现一次的数字。
@@ -2529,6 +2494,7 @@ MyNumbers table:
 <strong>解释：</strong>输入的表中不存在单一数字，所以返回 null 。</pre>
 
 
+```
 
 ##### Answer
 
@@ -2546,8 +2512,6 @@ ORDER BY num desc
 LIMIT 0,1) t
 ```
 
-
-
 ##### NULL 輸出情況
 
 ![匯總圖片](https://img-blog.csdnimg.cn/img_convert/9e744b37a5b439eefe75460a8d895424.png)
@@ -2555,23 +2519,18 @@ LIMIT 0,1) t
 * select 空 param1 -> param1：null
 * select param1 from 空 —> param1：空
 
-
-
 -> **可以使用聚合函数进行空值null值的转换，具体的聚合函数包括SUM/AVG/MAX/MIN**
 
 -> 應當SELECT一個空值 而不是 FROM 一個空值
 
 -> LIMIT ， WHERE，HAVING 語句不會產生新的NULL
 
-
 #### 1045. [买下所有产品的客户](https://leetcode.cn/problems/customers-who-bought-all-products/)
 
 ##### Question
 
-
 `Customer` 表：
 
-```
 +-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
@@ -2581,17 +2540,20 @@ LIMIT 0,1) t
 该表可能包含重复的行。
 customer_id 不为 NULL。
 product_key 是 Product 表的外键(reference 列)。
+
 ```
 
 `Product` 表：
 
 ```
+
 +-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | product_key | int     |
 +-------------+---------+
 product_key 是这张表的主键（具有唯一值的列）。
+
 ```
 
 编写解决方案，报告 `Customer` 表中购买了 `Product` 表中所有产品的客户的 id。
@@ -2630,6 +2592,7 @@ Product 表：
 <strong>解释：</strong>
 购买了所有产品（5 和 6）的客户的 id 是 1 和 3 。</pre>
 
+```
 
 ##### Answer
 
@@ -2642,14 +2605,12 @@ GROUP BY customer_id
 HAVING COUNT(DISTINCT product_key)=(SELECT COUNT(product_key) FROM Product)
 ```
 
-
 #### 1731. [每位经理的下属员工数量](https://leetcode.cn/problems/the-number-of-employees-which-report-to-each-employee/)
 
 ##### Question
 
 表：`Employees`
 
-```
 +-------------+----------+
 | Column Name | Type     |
 +-------------+----------+
@@ -2660,6 +2621,7 @@ HAVING COUNT(DISTINCT product_key)=(SELECT COUNT(product_key) FROM Product)
 +-------------+----------+
 employee_id 是这个表中具有不同值的列。
 该表包含员工以及需要听取他们汇报的上级经理的 ID 的信息。 有些员工不需要向任何人汇报（reports_to 为空）。
+
 ```
 
 对于此问题，我们将至少有一个其他员工需要向他汇报的员工，视为一个经理。
@@ -2716,7 +2678,7 @@ Employees 表：
 | 2           | Alice   | 2             | 37          |
 | 3           | Bob     | 1             | 37          |
 +-------------+---------+---------------+-------------+</pre>
-
+```
 
 ##### Answer
 
@@ -2735,14 +2697,12 @@ GROUP BY e1.reports_to
 ORDER BY employee_id
 ```
 
-
 #### 1789. [员工的直属部门](https://leetcode.cn/problems/primary-department-for-each-employee/)
 
 ##### Question
 
 表：`Employee`
 
-```
 +---------------+---------+
 | Column Name   |  Type   |
 +---------------+---------+
@@ -2754,6 +2714,7 @@ ORDER BY employee_id
 employee_id 是员工的ID
 department_id 是部门的ID，表示员工与该部门有关系
 primary_flag 是一个枚举类型，值分别为('Y', 'N'). 如果值为'Y',表示该部门是员工的直属部门。 如果值是'N',则否
+
 ```
 
 一个员工可以属于多个部门。当一个员工加入**超过一个部门**的时候，他需要决定哪个部门是他的直属部门。请注意，当员工只加入一个部门的时候，那这个部门将默认为他的直属部门，虽然表记录的值为 `'N'`.
@@ -2794,11 +2755,12 @@ Employee table:
 - 员工 3 的直属部门是 3
 - 员工 4 的直属部门是 3</pre>
 
+```
 
 ##### Answer
 
 ```
-SELECT 
+SELECT
     e.employee_id,
     department_id
 FROM
@@ -2816,14 +2778,12 @@ WHERE
     OR (department > 1 AND primary_flag = 'Y')
 ```
 
-
-#### 610. [判断三角形](https://leetcode.cn/problems/triangle-judgement/) 
+#### 610. [判断三角形](https://leetcode.cn/problems/triangle-judgement/)
 
 ##### Question
 
 表: `Triangle`
 
-```
 +-------------+------+
 | Column Name | Type |
 +-------------+------+
@@ -2833,6 +2793,7 @@ WHERE
 +-------------+------+
 在 SQL 中，(x, y, z)是该表的主键列。
 该表的每一行包含三个线段的长度。
+
 ```
 
 对每三个线段报告它们是否可以形成一个三角形。
@@ -2859,36 +2820,31 @@ Triangle 表:
 | 10 | 20 | 15 | Yes      |
 +----+----+----+----------+</pre>
 
+```
 
 ##### Answer
 
 ```
-SELECT 
+SELECT
     x,
     y,
     z,
     IF((ABS(z)>=ABS(x) AND ABS(z)>=ABS(y) AND ABS(x+y)>ABS(z))OR (ABS(x)>= ABS(z) AND ABS(x)>=ABS(y) AND ABS(z+y)>ABS(x)) OR (ABS(y)>=ABS(x) AND ABS(y)>=ABS(z) AND ABS(x+z)>ABS(y)),'Yes','No')as 'Triangle'
 FROM
     Triangle
-
+```
 
 ```
 
-
-```
 select *,if(x+y>z and x+z>y and y+z>x, 'Yes', 'No') as triangle from Triangle;
 ```
 
-
-
 #### 180.  [连续出现的数字](https://leetcode.cn/problems/consecutive-numbers/)
-
 
 ##### Question
 
 表：`Logs`
 
-```
 +-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
@@ -2897,6 +2853,7 @@ select *,if(x+y>z and x+z>y and y+z>x, 'Yes', 'No') as triangle from Triangle;
 +-------------+---------+
 在 SQL 中，id 是该表的主键。
 id 是一个自增列。
+
 ```
 
 找出所有至少连续出现三次的数字。
@@ -2929,6 +2886,7 @@ Result 表：
 +-----------------+
 <strong>解释：</strong>1 是唯一连续出现至少三次的数字。</pre>
 
+```
 
 ##### Answer
 
@@ -2945,11 +2903,9 @@ FROM
         FROM
             Logs
     )n
-WHERE 
+WHERE
     num = next and next = next2
 ```
-
-
 
 #### 1164. [指定日期的产品价格](https://leetcode.cn/problems/product-price-at-a-given-date/)
 
@@ -2957,7 +2913,6 @@ WHERE
 
 产品数据表: `Products`
 
-```
 +---------------+---------+
 | Column Name   | Type    |
 +---------------+---------+
@@ -2967,6 +2922,7 @@ WHERE
 +---------------+---------+
 (product_id, change_date) 是此表的主键（具有唯一值的列组合）。
 这张表的每一行分别记录了 某产品 在某个日期 更改后 的新价格。
+
 ```
 
 编写一个解决方案，找出在 `2019-08-16` 时全部产品的价格，假设所有产品在修改前的价格都是 `10`** 。**
@@ -2998,15 +2954,16 @@ Products 表:
 | 3          | 10    |
 +------------+-------+</pre>
 
+```
 
 ##### Answer
 
 ```
-SELECT 
+SELECT
     DISTINCT p.product_id,
     if(np.new_price,np.new_price,10) as 'price'
 FROM Products p
-LEFT JOIN 
+LEFT JOIN
 (SELECT
     product_id,
     new_price
@@ -3021,10 +2978,9 @@ FROM
 WHERE
     change_date <= '2019-08-16'
 ) r
-WHERE 
+WHERE
     r.cr = 1) np ON np.product_id = p.product_id
 ```
-
 
 給更改價格的日期排序 倒序排序獲得的第一位就是最後更改的記錄
 
@@ -3043,15 +2999,14 @@ FROM
 WHERE
     change_date <= '2019-08-16'
 ) r
-WHERE 
-    r.cr = 1o
+WHERE
+    r.cr = 1
 ```
-
 
 由于需要直到所有產品id，所以先查詢id 再用JOIN的方式添加更改後的價格，若無更改後價格則為原來的10  這裡需要使用IF() 進行條件判斷
 
 ```
-SELECT 
+SELECT
     DISTINCT p.product_id,
     if(np.new_price,np.new_price,10) as 'price'
 FROM Products p
@@ -3061,14 +3016,13 @@ LEFT JOIN b
 DISTINCT 可以用GROUP BY 替換
 
 ```
-SELECT 
+SELECT
     p.product_id,
     if(np.new_price,np.new_price,10) as 'price'
 FROM Products p
-LEFT JOIN np ON 
+LEFT JOIN np ON
 GROUP BY p.product_id
 ```
-
 
 #### 1204.  [最后一个能进入巴士的人](https://leetcode.cn/problems/last-person-to-fit-in-the-bus/)
 
@@ -3076,7 +3030,6 @@ GROUP BY p.product_id
 
 表: `Queue`
 
-```
 +-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
@@ -3090,6 +3043,7 @@ person_id 是这个表具有唯一值的列。
 表中 person_id 和 turn 列将包含从 1 到 n 的所有数字，其中 n 是表中的行数。
 turn 决定了候车乘客上巴士的顺序，其中 turn=1 表示第一个上巴士，turn=n 表示最后一个上巴士。
 weight 表示候车乘客的体重，以千克为单位。
+
 ```
 
 有一队乘客在等着上巴士。然而，巴士有 `1000`  **千克** 的重量限制，所以其中一部分乘客可能无法上巴士。
@@ -3131,6 +3085,7 @@ Queue 表
 | 6    | 1  | Winston   | 500    | ___          |
 +------+----+-----------+--------+--------------+</pre>
 
+```
 
 ##### Answer
 
@@ -3149,11 +3104,10 @@ ORDER BY turn DESC
 LIMIT 1
 ```
 
-
 `SUM() OVER()` 窗口函数的方法进行排序，每一个乘客上去之后的总重量都会显示出来 然后筛选出添加后不超载的 所有人后 由上车顺序倒序排序，排第一的就是最后一个上车的人
 
-```
 output:
+
 | person_name | turn | r    |
 | ----------- | ---- | ---- |
 | Alice       | 1    | 250  |
@@ -3162,8 +3116,6 @@ output:
 | Marie       | 4    | 1200 |
 | Bob         | 5    | 1375 |
 | Winston     | 6    | 1875 |
-```
-
 
 #### 1907. [按分类统计薪水](https://leetcode.cn/problems/count-salary-categories/)
 
@@ -3171,7 +3123,6 @@ output:
 
 表: `Accounts`
 
-```
 +-------------+------+
 | 列名        | 类型  |
 +-------------+------+
@@ -3180,6 +3131,7 @@ output:
 +-------------+------+
 在 SQL 中，account_id 是这个表的主键。
 每一行都包含一个银行帐户的月收入的信息。
+
 ```
 
 查询每个工资类别的银行账户数量。 工资类别如下：
@@ -3219,6 +3171,7 @@ Accounts 表:
 中等薪水: 没有.
 高薪: 有三个账户，他们是 3, 6和 8.</pre>
 
+```
 
 ##### Answer
 
@@ -3242,12 +3195,7 @@ FROM
     Accounts
 ```
 
-
-
-
-
 ### 子查詢
-
 
 #### 1978. [上级经理已离职的公司员工](https://leetcode.cn/problems/employees-whose-manager-left-the-company/)
 
@@ -3255,7 +3203,6 @@ FROM
 
 表: `Employees`
 
-```
 +-------------+----------+
 | Column Name | Type     |
 +-------------+----------+
@@ -3267,6 +3214,7 @@ FROM
 在 SQL 中，employee_id 是这个表的主键。
 这个表包含了员工，他们的薪水和上级经理的id。
 有一些员工没有上级经理（其 manager_id 是空值）。
+
 ```
 
 查找这些员工的id，他们的薪水严格少于 `$30000` 并且他们的上级经理已离职。当一个经理离开公司时，他们的信息需要从员工表中删除掉，但是表中的员工的 `manager_id`  这一列还是设置的离职经理的id 。
@@ -3300,12 +3248,12 @@ Employees table:
 薪水少于 30000 美元的员工有 1 号(Kalel) 和 11号 (Joziah)。
 Kalel 的上级经理是 11 号员工，他还在公司上班(他是 Joziah )。
 Joziah 的上级经理是 6 号员工，他已经离职，因为员工表里面已经没有 6 号员工的信息了，它被删除了。</pre>
-
+```
 
 ##### Answer
 
 ```
-SELECT 
+SELECT
     employee_id
 FROM
     Employees
@@ -3315,16 +3263,12 @@ WHERE
 ORDER BY employee_id
 ```
 
-
-
 #### 626. [换座位](https://leetcode.cn/problems/exchange-seats/)
-
 
 ##### Question
 
 表: `Seat`
 
-```
 +-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
@@ -3334,6 +3278,7 @@ ORDER BY employee_id
 id 是该表的主键（唯一值）列。
 该表的每一行都表示学生的姓名和 ID。
 ID 序列始终从 1 开始并连续增加。
+
 ```
 
 编写解决方案来交换每两个连续的学生的座位号。如果学生的数量是奇数，则最后一个学生的id不交换。
@@ -3367,6 +3312,7 @@ Seat 表:
 +----+---------+
 <strong>解释:
 </strong>请注意，如果学生人数为奇数，则不需要更换最后一名学生的座位。</pre>
+```
 
 ##### Answer
 
@@ -3379,14 +3325,13 @@ SELECT
     (case
         when mod(id,2)!=0 AND id=total then id
         when mod(id,2)!=0 AND id!= total then id+1
-        else id-1 
+        else id-1
     end) as 'id',
     student
 FROM
-    Seat, temporaryTable 
+    Seat, temporaryTable
 ORDER BY id
 ```
-
 
 #### 1341. [电影评分](https://leetcode.cn/problems/movie-rating/)
 
@@ -3394,7 +3339,6 @@ ORDER BY id
 
 表：`Movies`
 
-```
 +---------------+---------+
 | Column Name   | Type    |
 +---------------+---------+
@@ -3403,11 +3347,13 @@ ORDER BY id
 +---------------+---------+
 movie_id 是这个表的主键(具有唯一值的列)。
 title 是电影的名字。
+
 ```
 
 表：`Users`
 
 ```
+
 +---------------+---------+
 | Column Name   | Type    |
 +---------------+---------+
@@ -3416,11 +3362,13 @@ title 是电影的名字。
 +---------------+---------+
 user_id 是表的主键(具有唯一值的列)。
 'name' 列具有唯一值。
+
 ```
 
 表：`MovieRating`
 
 ```
+
 +---------------+---------+
 | Column Name   | Type    |
 +---------------+---------+
@@ -3431,22 +3379,19 @@ user_id 是表的主键(具有唯一值的列)。
 +---------------+---------+
 (movie_id, user_id) 是这个表的主键(具有唯一值的列的组合)。
 这个表包含用户在其评论中对电影的评分 rating 。
-created_at 是用户的点评日期。 
-```
-
+created_at 是用户的点评日期。
 
 ##### Answer
 
 ```
-# Write your MySQL query statement below
 SELECT
     results
 FROM (SELECT
     COUNT(m.user_id) as 'num',
     name as 'results'
 FROM
-    MovieRating m 
-LEFT JOIN Users u ON m.user_id=u.user_id 
+    MovieRating m
+LEFT JOIN Users u ON m.user_id=u.user_id
 GROUP BY name
 ORDER BY num desc, name
 LIMIT 1) r1
@@ -3466,14 +3411,12 @@ ORDER BY num desc, results
 LIMIT 1) r2
 ```
 
-
 #### 1321. [餐馆营业额变化增长](https://leetcode.cn/problems/restaurant-growth/)
 
 ##### Question
 
 表: `Customer`
 
-```
 +---------------+---------+
 | Column Name   | Type    |
 +---------------+---------+
@@ -3486,6 +3429,7 @@ LIMIT 1) r2
 该表包含一家餐馆的顾客交易数据。
 visited_on 表示 (customer_id) 的顾客在 visited_on 那天访问了餐馆。
 amount 是一个顾客某一天的消费总额。
+
 ```
 
 你是餐馆的老板，现在你想分析一下可能的营业额变化增长（每天至少有一位顾客）。
@@ -3530,6 +3474,7 @@ Customer 表:
 第三个七天消费平均值从 2019-01-03 到 2019-01-09 是 (120 + 130 + 110 + 140 + 150 + 80 + 110)/7 = 120
 第四个七天消费平均值从 2019-01-04 到 2019-01-10 是 (130 + 110 + 140 + 150 + 80 + 110 + 130 + 150)/7 = 142.86</pre>
 
+```
 
 ##### Answer
 
@@ -3540,7 +3485,7 @@ with temp as(
         SUM(amount) as 'amount'
     FROM
         Customer
-    GROUP BY 
+    GROUP BY
         visited_on
 )
 SELECT
@@ -3549,7 +3494,7 @@ SELECT
     ROUND(SUM(b.amount)/7,2) as 'average_amount'
 FROM
     temp b, temp a
-WHERE 
+WHERE
     DATEDIFF(b.visited_on,a.visited_on) BETWEEN 0 AND 6
 GROUP BY a.visited_on
 HAVING COUNT(*)=7
@@ -3561,7 +3506,7 @@ HAVING COUNT(*)=7
 
 ```
 with temp(min_visited) as ( #找到最早日期後續需要使用來找到第一個七天
-    SELECT 
+    SELECT
         MIN(visited_on)
     FROM
         Customer
@@ -3579,18 +3524,17 @@ FROM
 WHERE DATEDIFF(t.visited_on,temp.min_visited) >=6
 ```
 
-
 ```
 SELECT #滑動窗口獲取 前七天的總數
      DISTINCT visited_on,
      SUM(amount) OVER(ORDER BY visited_on range interval 6 day preceding) 'amount'
 FROM
      Customer
-```
-
 
 ```
+
 output:
+
 | visited_on | amount |
 | ---------- | ------ |
 | 2019-01-01 | 100    |
@@ -3603,28 +3547,28 @@ output:
 | 2019-01-08 | 840    |
 | 2019-01-09 | 840    |
 | 2019-01-10 | 1000   |
-```
-
 
 根據最早的日期計算第一個七天的日期
 
 可以通過WHERE 子查詢的方式
 
-```
 WHERE datediff(visited_on, (select min(visited_on) from Customer))>=6
+
 ```
 
 或者 通過WITH 的方式事先查好
 
 ```
+
 with temp(min_visited) as ( #找到最早日期後續需要使用來找到第一個七天
-    SELECT 
+    SELECT
         MIN(visited_on)
     FROM
         Customer
 )
 
 WHERE DATEDIFF(t.visited_on,temp.min_visited) >=6
+
 ```
 
 
@@ -3635,6 +3579,7 @@ WHERE DATEDIFF(t.visited_on,temp.min_visited) >=6
 `RequestAccepted` 表：
 
 ```
+
 +----------------+---------+
 | Column Name    | Type    |
 +----------------+---------+
@@ -3644,6 +3589,7 @@ WHERE DATEDIFF(t.visited_on,temp.min_visited) >=6
 +----------------+---------+
 (requester_id, accepter_id) 是这张表的主键(具有唯一值的列的组合)。
 这张表包含发送好友请求的人的 ID ，接收好友请求的人的 ID ，以及好友请求通过的日期。
+
 ```
 
 编写解决方案，找出拥有最多的好友的人和他拥有的好友数目。
@@ -3674,17 +3620,18 @@ RequestAccepted 表：
 编号为 3 的人是编号为 1 ，2 和 4 的人的好友，所以他总共有 3 个好友，比其他人都多。</pre>
 
 
+```
 
 ##### Answer
 
 ```
 WITH temp1 (id) AS (
-     SELECT 
+     SELECT
         requester_id as 'id'
     FROM
         RequestAccepted
     UNION ALL
-    SELECT 
+    SELECT
         accepter_id as 'id'
     FROM
         RequestAccepted
@@ -3703,12 +3650,10 @@ LIMIT 1
 
 #### 585.[2016年的投资](https://leetcode.cn/problems/investments-in-2016/)
 
-
 ##### Question
 
 `Insurance` 表：
 
-```
 +-------------+-------+
 | Column Name | Type  |
 +-------------+-------+
@@ -3724,6 +3669,7 @@ pid 是投保人的投保编号。
 tiv_2015 是该投保人在 2015 年的总投保金额，tiv_2016 是该投保人在 2016 年的总投保金额。
 lat 是投保人所在城市的纬度。题目数据确保 lat 不为空。
 lon 是投保人所在城市的经度。题目数据确保 lon 不为空。
+
 ```
 
 编写解决方案报告 2016 年 (`tiv_2016`) 所有满足下述条件的投保人的投保金额之和：
@@ -3761,6 +3707,7 @@ tiv_2015 值为 10 与第三条和第四条记录相同，且其位置是唯一�
 因此，结果是第一条记录和最后一条记录的 tiv_2016 之和，即 45 。</pre>
 
 
+```
 
 ##### Answer
 
@@ -3797,14 +3744,12 @@ USING `CONTACT()` function:
 > Note that to add a separator during the concatenation, you use the
 > `CONCAT_WS()` function.
 
-
 #### 185. 部門工資前三高的所有員工
 
 ##### Question
 
 表: `Employee`
 
-```
 +--------------+---------+
 | Column Name  | Type    |
 +--------------+---------+
@@ -3816,11 +3761,13 @@ USING `CONTACT()` function:
 id 是该表的主键列(具有唯一值的列)。
 departmentId 是 Department 表中 ID 的外键（reference 列）。
 该表的每一行都表示员工的ID、姓名和工资。它还包含了他们部门的ID。
+
 ```
 
 表: `Department`
 
 ```
+
 +-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
@@ -3829,6 +3776,7 @@ departmentId 是 Department 表中 ID 的外键（reference 列）。
 +-------------+---------+
 id 是该表的主键列(具有唯一值的列)。
 该表的每一行表示部门ID和部门名。
+
 ```
 
 公司的主管们感兴趣的是公司每个部门中谁赚的钱最多。一个部门的 **高收入者** 是指一个员工的工资在该部门的 **不同** 工资中 **排名前三** 。
@@ -3883,11 +3831,11 @@ Department  表:
 - 山姆的薪水第二高
 - 没有第三高的工资，因为只有两名员工</pre>
 
+```
 
 ##### Answer
 
 ```
-# Write your MySQL query statement below
 SELECT
     Department,
     Employee,
@@ -3906,13 +3854,13 @@ WHERE
 ```
 
 
+
 #### 1667. [修复表中的名字](https://leetcode.cn/problems/fix-names-in-a-table/)
 
 ##### Question
 
 表： `Users`
 
-```
 +----------------+---------+
 | Column Name    | Type    |
 +----------------+---------+
@@ -3921,6 +3869,7 @@ WHERE
 +----------------+---------+
 user_id 是该表的主键(具有唯一值的列)。
 该表包含用户的 ID 和名字。名字仅由小写和大写字符组成。
+
 ```
 
 编写解决方案，修复名字，使得只有第一个字符是大写的，其余都是小写的。
@@ -3946,7 +3895,7 @@ Users table:
 | 1       | Alice |
 | 2       | Bob   |
 +---------+-------+</pre>
-
+```
 
 ##### Answer
 
@@ -3966,7 +3915,6 @@ ORDER BY user_id
 
 患者信息表： `Patients`
 
-```
 +--------------+---------+
 | Column Name  | Type    |
 +--------------+---------+
@@ -3977,6 +3925,7 @@ ORDER BY user_id
 在 SQL 中，patient_id （患者 ID）是该表的主键。
 'conditions' （疾病）包含 0 个或以上的疾病代码，以空格分隔。
 这个表包含医院中患者的信息。
+
 ```
 
 查询患有 I 类糖尿病的患者 ID （patient_id）、患者姓名（patient_name）以及其患有的所有疾病代码（conditions）。I 类糖尿病的代码总是包含前缀 `DIAB1` 。
@@ -3988,6 +3937,7 @@ ORDER BY user_id
 **示例 1:**
 
 ```
+
 输入：
 Patients表：
 +------------+--------------+--------------+
@@ -4004,11 +3954,9 @@ Patients表：
 | patient_id | patient_name | conditions   |
 +------------+--------------+--------------+
 | 3          | Bob          | DIAB100 MYOP |
-| 4          | George       | ACNE DIAB100 | 
+| 4          | George       | ACNE DIAB100 |
 +------------+--------------+--------------+
 解释：Bob 和 George 都患有代码以 DIAB1 开头的疾病。
-```
-
 
 ##### Answer
 
@@ -4029,8 +3977,8 @@ WHERE
 select * from Patients where conditions regexp '\\bDIAB1.*'
 ```
 
-正則表達式 來進行匹配
 
+正則表達式 來進行匹配
 
 #### 196. [删除重复的电子邮箱](https://leetcode.cn/problems/delete-duplicate-emails/)
 
@@ -4038,7 +3986,6 @@ select * from Patients where conditions regexp '\\bDIAB1.*'
 
 表: `Person`
 
-```
 +-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
@@ -4047,6 +3994,7 @@ select * from Patients where conditions regexp '\\bDIAB1.*'
 +-------------+---------+
 id 是该表的主键列(具有唯一值的列)。
 该表的每一行包含一封电子邮件。电子邮件将不包含大写字母。
+
 ```
 
 编写解决方案** 删除** 所有重复的电子邮件，只保留一个具有最小 `id` 的唯一电子邮件。
@@ -4078,7 +4026,7 @@ Person 表:
 | 2  | bob@example.com  |
 +----+------------------+
 <strong>解释:</strong> john@example.com重复两次。我们保留最小的Id = 1。</pre>
-
+```
 
 ##### Answer
 
@@ -4091,6 +4039,7 @@ WHERE id NOT IN (
 );
 ```
 
+
 ```
 delete p1 from Person p1, Person p2 where p1.email=p2.email and p1.id>p2.id
 ```
@@ -4102,7 +4051,6 @@ delete p1 from Person p1, Person p2 where p1.email=p2.email and p1.id>p2.id
 
 `Employee` 表：
 
-```
 +-------------+------+
 | Column Name | Type |
 +-------------+------+
@@ -4111,6 +4059,7 @@ delete p1 from Person p1, Person p2 where p1.email=p2.email and p1.id>p2.id
 +-------------+------+
 id 是这个表的主键。
 表的每一行包含员工的工资信息。
+
 ```
 
 查询并返回 `Employee` 表中第二高的 **不同** 薪水 。如果不存在第二高的薪水，查询应该返回 `null(Pandas 则返回 None)` 。
@@ -4151,7 +4100,7 @@ Employee 表：
 +---------------------+
 | null                |
 +---------------------+</pre>
-
+```
 
 ##### Answer
 
@@ -4171,8 +4120,8 @@ SELECT
     ,null) as 'SecondHighestSalary'
 ```
 
-由於輸出 null的原則是選擇了空而不是選擇的表為空 所以在最外面套一層 SELECT IFNULL((),NULL) 直接將結果為null的輸出成null
 
+由於輸出 null的原則是選擇了空而不是選擇的表為空 所以在最外面套一層 SELECT IFNULL((),NULL) 直接將結果為null的輸出成null
 
 #### 1484. [按日期分组销售产品](https://leetcode.cn/problems/group-sold-products-by-the-date/)
 
@@ -4180,7 +4129,6 @@ SELECT
 
 表 `Activities`：
 
-```
 +-------------+---------+
 | 列名         | 类型    |
 +-------------+---------+
@@ -4189,6 +4137,7 @@ SELECT
 +-------------+---------+
 该表没有主键(具有唯一值的列)。它可能包含重复项。
 此表的每一行都包含产品名称和在市场上销售的日期。
+
 ```
 
 编写解决方案找出每个日期、销售的不同产品的数量及其名称。
@@ -4199,6 +4148,7 @@ SELECT
 **示例 1:**
 
 ```
+
 输入：
 Activities 表：
 +------------+-------------+
@@ -4224,8 +4174,6 @@ Activities 表：
 对于2020-05-30，出售的物品是 (Headphone, Basketball, T-shirt)，按词典序排列，并用逗号 ',' 分隔。
 对于2020-06-01，出售的物品是 (Pencil, Bible)，按词典序排列，并用逗号分隔。
 对于2020-06-02，出售的物品是 (Mask)，只需返回该物品名。
-```
-
 
 ##### Answer
 
@@ -4237,7 +4185,6 @@ SELECT
 FROM
     Activities
 GROUP BY sell_date
-
 ```
 
 
@@ -4247,7 +4194,6 @@ GROUP BY sell_date
 
 表: `Products`
 
-```
 +------------------+---------+
 | Column Name      | Type    |
 +------------------+---------+
@@ -4257,11 +4203,13 @@ GROUP BY sell_date
 +------------------+---------+
 product_id 是该表主键(具有唯一值的列)。
 该表包含该公司产品的数据。
+
 ```
 
 表: `Orders`
 
 ```
+
 +---------------+---------+
 | Column Name   | Type    |
 +---------------+---------+
@@ -4272,6 +4220,7 @@ product_id 是该表主键(具有唯一值的列)。
 该表可能包含重复行。
 product_id 是表单 Products 的外键（reference 列）。
 unit 是在日期 order_date 内下单产品的数目。
+
 ```
 
 写一个解决方案，要求获取在 2020 年 2 月份下单的数量不少于 100 的产品的名字和数目。
@@ -4324,6 +4273,7 @@ Orders 表:
 2020 年 2 月份 product_id = 4 的产品并没有下单。
 2020 年 2 月份下单 product_id = 5 的产品的数目总和为 (50 + 50) = 100 。</pre>
 
+```
 
 ##### Answer
 
@@ -4347,7 +4297,6 @@ HAVING SUM(o.unit) >= 100
 
 表: `Users`
 
-```
 +---------------+---------+
 | Column Name   | Type    |
 +---------------+---------+
@@ -4357,6 +4306,7 @@ HAVING SUM(o.unit) >= 100
 +---------------+---------+
 user_id 是该表的主键（具有唯一值的列）。
 该表包含了网站已注册用户的信息。有一些电子邮件是无效的。
+
 ```
 
 编写一个解决方案，以查找具有有效电子邮件的用户。
@@ -4399,6 +4349,7 @@ Users 表:
 用户 6 的电子邮件没有 leetcode 域。 
 用户 7 的电子邮件以点开头。</pre>
 
+```
 
 ##### Answer
 
