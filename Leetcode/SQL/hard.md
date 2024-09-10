@@ -98,13 +98,20 @@ FROM(
         Department.name as 'Department',
         Employee.name as 'Employee',
         salary as 'Salary',
-        DENSE_RANK() OVER(PARTITION BY employee.departmentId ORDER BY salary DESC) as 'rank'
+        DENSE_RANK() OVER(PARTITION BY employee.departmentId ORDER BY salary DESC) as 'rank' #在各個部門內進行排序
     FROM
         Employee
     LEFT JOIN Department ON Department.id = Employee.departmentId) as a
 WHERE
     a.rank <=3
 ```
+
+
+#### Explain
+
+Using DENSE_RANK() windows function to sort the salary of the employee in eache Department:  partition by departmentId -> in each Department  ORDER BY salary -> sorting in salary
+
+
 
 
 
